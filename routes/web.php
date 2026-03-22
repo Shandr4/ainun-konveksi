@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered; // <--- TAMBAHAN INI BIAR GAK MERAH
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Models\Appointment;
 use App\Models\LandingPage;
 use App\Models\AboutPage;
@@ -12,7 +14,7 @@ use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes - AINUN KONVEKSI FINAL SYSTEM
+| Web Routes - AINUN KONVEKSI FINAL SYSTEM (VERIFIED EDITION)
 |--------------------------------------------------------------------------
 */
 
@@ -24,12 +26,12 @@ Route::get('/', function () {
 
 // 2. HALAMAN DETAIL TENTANG KAMI
 Route::get('/about-details', function () {
-    $about = AboutPage::first();       // Data Visi Misi dll
-    $landing = LandingPage::first();   // Data Kontak/Footer
+    $about = AboutPage::first();
+    $landing = LandingPage::first();
     return view('about-details', compact('about', 'landing'));
 })->name('about-details');
 
-// 3. HALAMAN DETAIL LAYANAN (Sesuai Desain Baru)
+// 3. HALAMAN DETAIL LAYANAN
 Route::get('/layanan-kami', function () {
     $service = ServicePage::first();
     $landing = LandingPage::first();
@@ -43,21 +45,39 @@ Route::get('/terms', function () {
 
 /*
 |--------------------------------------------------------------------------
-| AUTHENTICATION SYSTEM (LOGIN, REGISTER, LOGOUT)
+| EMAIL VERIFICATION SYSTEM
 |--------------------------------------------------------------------------
 */
 
-// Tampilan Form Login
+Route::get('/email/verify', function () {
+    return view('auth.verify-email'); 
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect('/')->with('success_login', 'Email berhasil diverifikasi! Selamat bergabung.');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('message', 'Link verifikasi baru telah dikirim!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+/*
+|--------------------------------------------------------------------------
+| AUTHENTICATION SYSTEM
+|--------------------------------------------------------------------------
+*/
+
 Route::get('/login-custom', function () {
     return view('auth.login');
 })->name('login');
 
-// Tampilan Form Register
 Route::get('/register-custom', function () {
     return view('auth.register');
 })->name('register');
 
-// PROSES SIMPAN DATA REGISTER
+// REGISTER
 Route::post('/register-custom', function (Request $request) {
     $request->validate([
         'name' => 'required|string|max:255',
@@ -71,12 +91,15 @@ Route::post('/register-custom', function (Request $request) {
         'password' => Hash::make($request->password),
     ]);
 
+    // 🔥 Sekarang pakai Registered::dispatch() yang sudah di-import
+    event(new Registered($user));
+
     Auth::login($user);
 
-    return redirect('/')->with('success_login', 'Pendaftaran berhasil! Selamat datang di Ainun Konveksi.');
+    return redirect()->route('verification.notice');
 });
 
-// PROSES LOGIN (DENGAN PINTU OTOMATIS KE ADMIN)
+// LOGIN (VIP Admin Jalur)
 Route::post('/login-custom', function (Request $request) {
     $credentials = $request->validate([
         'email' => 'required|email',
@@ -87,27 +110,20 @@ Route::post('/login-custom', function (Request $request) {
 
     if (Auth::attempt($credentials, $remember)) {
         $request->session()->regenerate();
-
         $user = Auth::user();
         
-        // --- LOGIKA PINTU VIP ADMIN ---
-        // Daftar Email yang otomatis masuk ke Dashboard Filament
         $daftarAdmin = ['adminganteng@ainun.com', 'admin@ainun.com'];
 
         if (in_array($user->email, $daftarAdmin)) {
             return redirect('/admin'); 
         }
 
-        // Jika user biasa, lempar ke Home
-        return redirect('/')->with('success_login', 'Login berhasil! Selamat datang kembali.');
+        return redirect('/')->with('success_login', 'Login berhasil!');
     }
 
-    return back()->withErrors([
-        'email' => 'Email atau password salah bosku.',
-    ])->onlyInput('email');
+    return back()->withErrors(['email' => 'Email atau password salah bosku.'])->onlyInput('email');
 });
 
-// PROSES LOGOUT
 Route::post('/logout', function (Request $request) {
     Auth::logout();
     $request->session()->invalidate();
@@ -121,7 +137,6 @@ Route::post('/logout', function (Request $request) {
 |--------------------------------------------------------------------------
 */
 
-// SIMPAN PESAN / APPOINTMENT DARI HALAMAN DEPAN
 Route::post('/appointment', function (Request $request) {
     $request->validate([
         'first_name' => 'required',
@@ -132,6 +147,5 @@ Route::post('/appointment', function (Request $request) {
     ]);
 
     Appointment::create($request->all());
-
-    return back()->with('success', 'Pesan berhasil dikirim! Kami akan segera menghubungi Anda.');
+    return back()->with('success', 'Pesan berhasil dikirim!');
 })->name('appointment.store');

@@ -2,16 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail; // <--- 1. Sudah Aktif
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Filament\Models\Contracts\FilamentUser; // <--- Import ini wajib ada
-use Filament\Panel; // <--- Import ini wajib ada
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 
-// Tambahkan "implements FilamentUser" di sini
-class User extends Authenticatable implements FilamentUser
+// 🔥 2. TAMBAHKAN "implements MustVerifyEmail" di baris ini! 🔥
+class User extends Authenticatable implements FilamentUser, MustVerifyEmail
 {
-    // 🔥 HasApiTokens udah aku hapus di sini biar nggak merah lagi! 🔥
     use HasFactory, Notifiable;
 
     /**
@@ -46,13 +46,12 @@ class User extends Authenticatable implements FilamentUser
     ];
 
     // 🔥 SATPAM FILAMENT 🔥
-    // Fungsi ini akan mengecek apakah user boleh masuk ke /admin
     public function canAccessPanel(Panel $panel): bool
     {
-        // ⚠️ PENTING: Masukkan email admin kamu di bawah ini!
+        // Email yang boleh masuk ke dashboard admin
         $daftarAdmin = [
             'admin@ainun.com',         
-            'adminganteng@ainun.com',  // <-- Sesuai nama user admin kamu di screenshot
+            'adminganteng@ainun.com',  
             'bos@ainun.com'
         ];
 
