@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Auth\Events\Registered; // <--- TAMBAHAN INI BIAR GAK MERAH
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Models\Appointment;
 use App\Models\LandingPage;
@@ -91,7 +91,7 @@ Route::post('/register-custom', function (Request $request) {
         'password' => Hash::make($request->password),
     ]);
 
-    // 🔥 Sekarang pakai Registered::dispatch() yang sudah di-import
+    // Pemicu Kirim Email Verifikasi Otomatis
     event(new Registered($user));
 
     Auth::login($user);
@@ -133,7 +133,7 @@ Route::post('/logout', function (Request $request) {
 
 /*
 |--------------------------------------------------------------------------
-| FORM SUBMISSION
+| FORM SUBMISSION (LAPIS BELAKANG SECURED) 🛡️
 |--------------------------------------------------------------------------
 */
 
@@ -148,4 +148,4 @@ Route::post('/appointment', function (Request $request) {
 
     Appointment::create($request->all());
     return back()->with('success', 'Pesan berhasil dikirim!');
-})->name('appointment.store');
+})->name('appointment.store')->middleware('auth');

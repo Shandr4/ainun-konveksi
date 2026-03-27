@@ -349,11 +349,18 @@
                     
                     <textarea name="message" required placeholder="Message..." rows="5" class="w-full px-6 py-5 rounded-[30px] border border-slate-200 shadow-sm focus:ring-2 focus:ring-yellow-500 outline-none text-slate-600 bg-white placeholder-slate-400 font-medium resize-none"></textarea>
                     
-                    <div class="mt-2">
-                        <button type="submit" class="bg-[#F59E0B] hover:bg-yellow-400 text-white font-bold px-10 py-4 rounded-full transition-transform hover:-translate-y-1 shadow-lg shadow-yellow-500/30 text-sm tracking-wide">
-                            Send Message
-                        </button>
+                   <div class="mt-2">
+                        @auth
+                            <button type="submit" class="bg-[#F59E0B] hover:bg-yellow-400 text-white font-bold px-10 py-4 rounded-full transition-transform hover:-translate-y-1 shadow-lg shadow-yellow-500/30 text-sm tracking-wide">
+                                Send Message
+                            </button>
+                        @else
+                            <button type="button" onclick="alert('Ups! Kamu harus login dulu bosku buat ngirim pesan. Biar aman dari bot spam! 🤖❌'); window.location.href='/login-custom';" class="bg-[#F59E0B] hover:bg-yellow-400 text-white font-bold px-10 py-4 rounded-full transition-transform hover:-translate-y-1 shadow-lg shadow-yellow-500/30 text-sm tracking-wide">
+                                Send Message
+                            </button>
+                        @endauth
                     </div>
+
                 </form>
             </div>
         </div>
