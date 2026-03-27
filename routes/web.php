@@ -149,3 +149,14 @@ Route::post('/appointment', function (Request $request) {
     Appointment::create($request->all());
     return back()->with('success', 'Pesan berhasil dikirim!');
 })->name('appointment.store')->middleware('auth');
+
+// HALAMAN PORTOFOLIO / PROJECT
+Route::get('/project', function () {
+    // Kita panggil LandingPage biar nomor WA & Jam Buka di header tetap muncul
+    $data = App\Models\LandingPage::first(); 
+    
+    // Ambil data dari tabel projects
+    $projects = App\Models\Project::latest()->get(); 
+    
+    return view('project', compact('data', 'projects'));
+});

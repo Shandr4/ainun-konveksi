@@ -69,7 +69,9 @@
         <div class="hidden md:flex items-center gap-8 text-[13px] font-semibold tracking-wide">
             <div id="nav-links" class="flex items-center gap-8">
                 <a href="#home" class="nav-link text-slate-500 hover:text-yellow-600 transition-colors" data-section="home">Home</a>
-                <a href="#product" class="nav-link text-slate-500 hover:text-yellow-600 transition-colors" data-section="product">Product</a>
+                
+                <a href="/project" class="nav-link text-slate-500 hover:text-yellow-600 transition-colors">Project</a>
+                
                 <a href="#about" class="nav-link text-slate-500 hover:text-yellow-600 transition-colors" data-section="about">About us</a>
                 <a href="#contact-order" class="nav-link text-slate-500 hover:text-yellow-600 transition-colors" data-section="contact-order">Contact</a>
             </div>
@@ -367,50 +369,7 @@
     </section>
 
     <footer class="bg-[#4A699C] py-20 px-6 md:px-20 border-t border-white/10 mt-10">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-16">
-            
-            <div>
-                <h4 class="text-white text-2xl font-bold mb-8 tracking-wide">Links</h4>
-                <ul class="space-y-5 text-white/80 font-medium text-lg">
-                    <li><a href="#about" class="hover:text-yellow-400 transition-colors">About us</a></li>
-                    <li><a href="#product" class="hover:text-yellow-400 transition-colors">Categories</a></li>
-                    <li><a href="#services" class="hover:text-yellow-400 transition-colors">Services List</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="text-white text-2xl font-bold mb-8 tracking-wide">Account</h4>
-                <ul class="space-y-5 text-white/80 font-medium text-lg">
-                    <li><a href="/login-custom" class="hover:text-yellow-400 transition-colors">Login</a></li>
-                    <li><a href="/register-custom" class="hover:text-yellow-400 transition-colors">Register</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="text-white text-2xl font-bold mb-8 tracking-wide">Legal</h4>
-                <ul class="space-y-5 text-white/80 font-medium text-lg">
-                    <li><a href="/terms" class="hover:text-yellow-400 transition-colors">Terms and conditions</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="text-white text-2xl font-bold mb-8 tracking-wide">Social Links</h4>
-                <div class="flex gap-4">
-                    <a href="#" class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-[#4A699C] hover:bg-yellow-400 hover:text-white transition-all shadow-lg transform hover:-translate-y-1">
-                        <i class="fab fa-facebook-f text-xl"></i>
-                    </a>
-                    <a href="#" class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-[#4A699C] hover:bg-yellow-400 hover:text-white transition-all shadow-lg transform hover:-translate-y-1">
-                        <i class="fab fa-instagram text-xl"></i>
-                    </a>
-                    <a href="#" class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-[#4A699C] hover:bg-yellow-400 hover:text-white transition-all shadow-lg transform hover:-translate-y-1">
-                        <i class="fab fa-twitter text-xl"></i>
-                    </a>
-                </div>
-            </div>
-
-        </div>
-        
-        <div class="max-w-7xl mx-auto border-t border-white/20 mt-16 pt-8 text-center text-white/60 text-sm font-medium">
+        <div class="max-w-7xl mx-auto text-center text-white/60 text-sm font-medium">
             &copy; 2026 Ainun Konveksi. All rights reserved.
         </div>
     </footer>
