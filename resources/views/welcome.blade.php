@@ -339,11 +339,7 @@
                 </div>
             </div>
 
-            <div class="hidden lg:flex absolute left-1/2 top-[10%] bottom-[10%] -translate-x-1/2 w-[70px] bg-[#F8FAFC] items-center justify-center z-20" style="clip-path: polygon(100% 0, 100% 100%, 0 calc(100% - 40px), 0 40px);">
-                <span class="transform -rotate-90 whitespace-nowrap font-black text-[#2D4373] tracking-widest text-sm uppercase">
-                    Schedule an Appointment
-                </span>
-            </div>
+            
 
             <div class="lg:w-1/2 p-6 md:p-16 flex flex-col justify-center relative z-10 bg-[#F8FAFC]">
                 
