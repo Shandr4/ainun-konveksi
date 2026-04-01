@@ -160,3 +160,12 @@ Route::get('/project', function () {
     
     return view('project', compact('data', 'projects'));
 });
+
+// Jalur Khusus Halaman Karir (Anjaya Konveksi)
+Route::get('/lowongan', function () {
+    // Ambil semua data loker yang statusnya AKTIF dari database
+    $vacancies = \App\Models\JobVacancy::where('is_active', true)->latest()->get();
+    
+    // Kirim datanya ke file tampilan 'lowongan.blade.php'
+    return view('lowongan', compact('vacancies'));
+});

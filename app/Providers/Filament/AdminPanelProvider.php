@@ -9,7 +9,6 @@ use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
-use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -28,19 +27,18 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             
-            // --- KOSMETIK UI/UX AINUN KONVEKSI MULAI DI SINI ---
-            ->brandName('Ainun Konveksi')
-            ->brandLogo(asset('images/logo.png')) // Pastikan ada file logo.png di folder public/images
-            ->brandLogoHeight('3rem')
-            ->font('Poppins')
+            // --- KOSMETIK PREMIUM AINUN KONVEKSI (UI/UX) ---
+            ->brandName('Anjaya Konveksi') // Karena belum ada gambar logo, ini bakal nampilin teks estetik
+            ->font('Poppins') // Font diubah jadi Poppins (lebih bulat, modern, elegan)
             ->colors([
-                'primary' => Color::hex('#2D4373'), // Biru elegan khas web Ainun Konveksi
-                'gray' => Color::Slate,
+                'primary' => Color::hex('#3B82F6'), // Aksen utama jadi Biru Premium (kayak foto referensi)
+                'gray' => Color::Slate, // Warna dasar jadi Slate (lebih elegan dari abu-abu standar)
                 'info' => Color::Blue,
                 'success' => Color::Emerald,
                 'warning' => Color::Amber,
             ])
-            // ---------------------------------------------------
+            ->maxContentWidth('full') // Biar layarnya bisa lebar maksimal 
+            // ----------------------------------------------
 
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
@@ -49,13 +47,12 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             
-            // --- WIDGET BAWAAN FILAMENT DIHAPUS ---
-            // Kita kosongkan array ini biar widget "Welcome" dan "Filament Info" hilang,
-            // dan digantikan otomatis sama widget grafik "Jedag-Jedug" yang kamu bikin.
+            // --- DASBOR SUPER BERSIH ---
+            // Dikosongkan biar widget default Filament ("Welcome" dll) hilang
             ->widgets([
                 
             ])
-            // --------------------------------------
+            // ---------------------------
             
             ->middleware([
                 EncryptCookies::class,

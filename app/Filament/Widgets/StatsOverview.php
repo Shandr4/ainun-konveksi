@@ -4,30 +4,47 @@ namespace App\Filament\Widgets;
 
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
+use App\Models\Project;      // Memanggil data Portofolio
+use App\Models\Appointment;  // Memanggil data Pesanan/Konsultasi
 
 class StatsOverview extends BaseWidget
 {
-    // Bikin widgetnya muncul paling atas
     protected static ?int $sort = 1;
 
     protected function getStats(): array
     {
+        // 1. Hitung Total Portofolio Asli
+        $totalProject = Project::count();
+
+        // 2. Hitung Konsultasi Baru (Semua data yang masuk ke tabel appointments)
+        $totalKonsultasi = Appointment::count();
+
+        // 3. Hitung Pesanan Aktif (Misal: Appointment yang statusnya 'pending' atau 'proses')
+        // Kalau kamu belum punya kolom status, pakai count biasa dulu aja seperti di bawah:
+        $pesananAktif = Appointment::count();
+        
+        // Catatan: Jika di database kamu belum ada kolom 'status', 
+        // ganti baris di atas jadi: $pesananAktif = Appointment::count();
+
         return [
-            Stat::make('Pesanan Aktif', '124')
-                ->description('32 pesanan baru minggu ini')
-                ->descriptionIcon('heroicon-m-arrow-trending-up')
-                ->chart([7, 2, 10, 3, 15, 4, 17]) // Ini yang bikin grafiknya jedag-jedug
+            // Card 1: Total Portofolio
+            Stat::make('Total Portofolio', $totalProject)
+                ->description('Karya yang sudah dipublikasi')
+                ->descriptionIcon('heroicon-m-briefcase')
+                ->chart([2, 5, 3, 8, 4, 10, $totalProject])
                 ->color('success'),
                 
-            Stat::make('Proyek Selesai', '1,250')
-                ->description('Naik 8% dari bulan lalu')
-                ->descriptionIcon('heroicon-m-arrow-trending-up')
-                ->chart([15, 4, 10, 2, 12, 4, 12])
+            // Card 2: Pesanan Aktif (Filter berdasarkan status)
+            Stat::make('Pesanan Aktif', $pesananAktif)
+                ->description('Pesanan yang sedang diproses')
+                ->descriptionIcon('heroicon-m-arrow-path')
+                ->chart([3, 2, 5, 3, $pesananAktif])
                 ->color('primary'),
                 
-            Stat::make('Konsultasi Baru', '18')
-                ->description('Klien menunggu dihubungi')
-                ->descriptionIcon('heroicon-m-clock')
+            // Card 3: Konsultasi Baru (Total pesan masuk)
+            Stat::make('Konsultasi Baru', $totalKonsultasi)
+                ->description('Klien yang menghubungi via web')
+                ->descriptionIcon('heroicon-m-chat-bubble-left-right')
                 ->color('warning'),
         ];
     }

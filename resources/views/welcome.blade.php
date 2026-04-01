@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $data->hero_title ?? 'Ainun Konveksi' }} | Premium Garment</title>
+    <title>{{ $data->hero_title ?? 'Anjaya Konveksi' }} | Premium Garment</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
@@ -61,7 +61,7 @@
     <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 px-4 md:px-20 py-3 md:py-4 flex justify-between items-center transition-all">
         <div class="flex items-center gap-3 group cursor-pointer">
             <div class="w-10 h-10 md:w-12 md:h-12 bg-[#3B5998] rounded-xl md:rounded-2xl flex items-center justify-center shadow-xl shadow-blue-900/20 transform group-hover:rotate-6 transition-all">
-                <span class="text-white font-black text-base md:text-lg italic tracking-tighter">ainun</span>
+                <span class="text-white font-black text-base md:text-lg italic tracking-tighter">Anjaya</span>
             </div>
             <span class="font-extrabold text-lg md:text-xl tracking-tight text-[#2D4373]">KONVEKSI</span>
         </div>
@@ -74,7 +74,7 @@
             <div id="nav-links" class="flex items-center gap-8">
                 <a href="#home" class="nav-link text-slate-500 hover:text-yellow-600 transition-colors" data-section="home">Home</a>
                 <a href="/project" class="nav-link text-slate-500 hover:text-yellow-600 transition-colors">Project</a>
-                <a href="#about" class="nav-link text-slate-500 hover:text-yellow-600 transition-colors" data-section="about">About us</a>
+                <a href="/lowongan" class="nav-link text-slate-500 hover:text-yellow-600 transition-colors">Lowongan</a>
                 <a href="#contact-order" class="nav-link text-slate-500 hover:text-yellow-600 transition-colors" data-section="contact-order">Contact</a>
             </div>
 
@@ -101,7 +101,7 @@
         <button id="close-menu-btn" class="absolute top-6 right-6 text-3xl text-slate-400 hover:text-red-500"><i class="fas fa-times"></i></button>
         <a href="#home" class="mobile-link border-b border-slate-100 pb-4">Home</a>
         <a href="/project" class="mobile-link border-b border-slate-100 pb-4">Project</a>
-        <a href="#about" class="mobile-link border-b border-slate-100 pb-4">About us</a>
+        <a href="/karir" class="mobile-link border-b border-slate-100 pb-4">Karir</a>
         <a href="#contact-order" class="mobile-link border-b border-slate-100 pb-4">Contact</a>
         
         <div class="mt-4 flex flex-col gap-4">
@@ -181,7 +181,7 @@
             </div>
 
             <div class="lg:pl-10 order-1 lg:order-2 text-center lg:text-left">
-                <h2 class="text-3xl sm:text-4xl md:text-6xl font-black text-[#2D4373] leading-tight mb-6 md:mb-8">Tentang <span class="text-yellow-500">Ainun</span> Konveksi</h2>
+                <h2 class="text-3xl sm:text-4xl md:text-6xl font-black text-[#2D4373] leading-tight mb-6 md:mb-8">Tentang <span class="text-yellow-500">Anjaya</span> Konveksi</h2>
                 <p class="text-slate-500 leading-relaxed mb-8 md:mb-10 text-base md:text-lg font-light">
                     {{ $data->about_description ?? 'Deskripsi perusahaan Anda.' }}
                 </p>
@@ -200,7 +200,7 @@
 
     <section id="services" class="py-16 md:py-28 px-6 md:px-20 bg-white">
         <div class="max-w-7xl mx-auto text-center mb-12 md:mb-20">
-            <h2 class="text-3xl sm:text-4xl md:text-6xl font-black text-[#2D4373] mb-4 md:mb-6">Layanan Ainun Konveksi</h2>
+            <h2 class="text-3xl sm:text-4xl md:text-6xl font-black text-[#2D4373] mb-4 md:mb-6">Layanan Anjaya Konveksi</h2>
             <p class="text-slate-500 text-base md:text-lg font-light max-w-3xl mx-auto leading-relaxed">
                 Kami menyediakan berbagai layanan produksi pakaian dengan standar kualitas tinggi, pengerjaan rapi, dan ketepatan waktu untuk memenuhi kebutuhan bisnis maupun personal.
             </p>
@@ -382,12 +382,12 @@
     </section>
 
     <footer class="bg-[#4A699C] py-16 md:py-20 px-6 md:px-20 border-t border-white/10 mt-10">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-16">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-16">
             
             <div>
                 <h4 class="text-white text-xl md:text-2xl font-bold mb-6 md:mb-8 tracking-wide">Links Utama</h4>
                 <ul class="space-y-4 md:space-y-5 text-white/80 font-medium text-base md:text-lg">
-                    <li><a href="#about" class="hover:text-yellow-400 transition-colors">Tentang Kami</a></li>
+                    <li><a href="/karir" class="hover:text-yellow-400 transition-colors">Karir</a></li>
                     <li><a href="/project" class="hover:text-yellow-400 transition-colors">Portofolio</a></li>
                     <li><a href="#services" class="hover:text-yellow-400 transition-colors">Layanan</a></li>
                 </ul>
@@ -398,13 +398,6 @@
                 <ul class="space-y-4 md:space-y-5 text-white/80 font-medium text-base md:text-lg">
                     <li><a href="/login-custom" class="hover:text-yellow-400 transition-colors">Login Klien</a></li>
                     <li><a href="/register-custom" class="hover:text-yellow-400 transition-colors">Daftar Member</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="text-white text-xl md:text-2xl font-bold mb-6 md:mb-8 tracking-wide">Informasi</h4>
-                <ul class="space-y-4 md:space-y-5 text-white/80 font-medium text-base md:text-lg">
-                    <li><a href="#" class="hover:text-yellow-400 transition-colors">Syarat & Ketentuan</a></li>
                 </ul>
             </div>
 
@@ -426,10 +419,80 @@
         </div>
         
         <div class="max-w-7xl mx-auto border-t border-white/20 mt-12 md:mt-16 pt-8 text-center text-white/80 text-xs md:text-sm font-medium">
-            &copy; 2026 Ainun Konveksi. All rights reserved.
+            &copy; 2026 Anjaya Konveksi. All rights reserved.
         </div>
     </footer>
 
+    @php
+        try {
+            // Mengambil 1 data loker terakhir yang statusnya Aktif
+            $activeVacancy = \App\Models\JobVacancy::where('is_active', true)->latest()->first();
+        } catch (\Exception $e) {
+            $activeVacancy = null; // Biar nggak error kalau tabel belum ada
+        }
+    @endphp
+
+    @if($activeVacancy)
+    <div id="lokerModal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm transition-opacity duration-300 opacity-0 pointer-events-none">
+        <div class="bg-white rounded-2xl md:rounded-[30px] shadow-2xl w-[90%] max-w-lg overflow-hidden transform scale-95 transition-transform duration-300 relative border-4 border-yellow-500" id="lokerContent">
+            
+            <button onclick="closeLokerModal()" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white/20 text-white rounded-full hover:bg-red-500 hover:text-white transition-colors z-20 shadow-md">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="bg-[#F59E0B] p-6 text-center relative overflow-hidden">
+                <div class="absolute -top-5 -right-5 text-white/20 text-8xl"><i class="fas fa-bullhorn"></i></div>
+                <h3 class="text-white font-black text-2xl relative z-10 uppercase tracking-widest drop-shadow-md">WE ARE HIRING!</h3>
+                <p class="text-white/90 text-sm mt-1 relative z-10 font-bold">Anjaya Konveksi Membutuhkanmu!</p>
+            </div>
+
+            <div class="p-6 md:p-8 text-center relative z-10">
+                <h4 class="text-2xl font-black text-[#2D4373] mb-2 uppercase">{{ $activeVacancy->title }}</h4>
+                
+                @if($activeVacancy->salary_range)
+                <div class="inline-block bg-green-100 text-green-700 font-bold px-4 py-1.5 rounded-full text-sm mb-4 border border-green-200">
+                    <i class="fas fa-wallet mr-1"></i> {{ $activeVacancy->salary_range }}
+                </div>
+                @endif
+
+                <div class="text-slate-600 text-sm leading-relaxed mb-6 text-left bg-slate-50 p-4 rounded-xl border border-slate-200 h-32 overflow-y-auto shadow-inner prose prose-sm">
+                    {!! $activeVacancy->description !!}
+                </div>
+
+                <a href="https://wa.me/6281234567890?text=Halo%20Anjaya%20Konveksi,%20saya%20tertarik%20melamar%20posisi%20{{ urlencode($activeVacancy->title) }}" target="_blank" class="w-full block bg-[#2D4373] hover:bg-blue-900 text-white font-bold py-3.5 rounded-xl shadow-xl transition-transform hover:-translate-y-1 text-center">
+                    <i class="fab fa-whatsapp text-lg mr-2"></i> Lamar Sekarang via WA
+                </a>
+                
+                <button onclick="closeLokerModal()" class="mt-4 text-slate-400 hover:text-slate-600 text-xs font-bold uppercase tracking-wider underline">
+                    Mungkin Nanti Saja
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Logika Pop-up Tampil Otomatis
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const modal = document.getElementById('lokerModal');
+                const content = document.getElementById('lokerContent');
+                if(modal && content) {
+                    modal.classList.remove('opacity-0', 'pointer-events-none');
+                    content.classList.remove('scale-95');
+                }
+            }, 1000); // Muncul setelah 1 detik
+        });
+
+        function closeLokerModal() {
+            const modal = document.getElementById('lokerModal');
+            const content = document.getElementById('lokerContent');
+            if(modal && content) {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                content.classList.add('scale-95');
+            }
+        }
+    </script>
+    @endif
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Logika Mobile Menu Hamburger
