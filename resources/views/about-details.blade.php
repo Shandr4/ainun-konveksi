@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tentang Kami | Ainun Konveksi</title>
+    <title>Tentang Kami | Anjaya Konveksi</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -34,7 +34,7 @@
     <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 px-4 md:px-20 py-3 md:py-4 flex justify-between items-center transition-all shadow-sm">
         <a href="/" class="flex items-center gap-3 group cursor-pointer">
             <div class="w-10 h-10 md:w-12 md:h-12 bg-[#3B5998] rounded-xl md:rounded-2xl flex items-center justify-center shadow-xl shadow-blue-900/20 transform group-hover:rotate-6 transition-all">
-                <span class="text-white font-black text-base md:text-lg italic tracking-tighter">ainun</span>
+                <span class="text-white font-black text-base md:text-lg italic tracking-tighter">anjaya</span>
             </div>
             <span class="font-extrabold text-lg md:text-xl tracking-tight text-[#2D4373]">KONVEKSI</span>
         </a>
@@ -47,7 +47,7 @@
             <div id="nav-links" class="flex items-center gap-8">
                 <a href="/" class="nav-link text-slate-500 hover:text-yellow-600 transition-colors">Home</a>
                 <a href="/project" class="nav-link text-slate-500 hover:text-yellow-600 transition-colors">Project</a>
-                <a href="/#about" class="nav-link text-yellow-600 border-b-2 border-yellow-500 pb-1 transition-colors">About us</a>
+                <a href="/lowongan" class="nav-link text-yellow-600 border-b-2 border-yellow-500 pb-1 transition-colors">Lowongan</a>
                 <a href="/#contact-order" class="nav-link text-slate-500 hover:text-yellow-600 transition-colors">Contact</a>
             </div>
 
@@ -74,7 +74,7 @@
         <button id="close-menu-btn" class="absolute top-6 right-6 text-3xl text-slate-400 hover:text-red-500"><i class="fas fa-times"></i></button>
         <a href="/" class="mobile-link border-b border-slate-100 pb-4">Home</a>
         <a href="/project" class="mobile-link border-b border-slate-100 pb-4">Project</a>
-        <a href="/#about" class="mobile-link border-b border-slate-100 pb-4 text-yellow-600">About us</a>
+        <a href="/lowongan" class="mobile-link border-b border-slate-100 pb-4 text-yellow-600">Lowongan</a>
         <a href="/#contact-order" class="mobile-link border-b border-slate-100 pb-4">Contact</a>
         
         <div class="mt-4 flex flex-col gap-4">
@@ -109,7 +109,7 @@
             </div>
             
             <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-3 md:mb-4 tracking-tight drop-shadow-lg px-2">
-                Tentang Ainun Konveksi
+                Tentang Anjaya Konveksi
             </h1>
             <p class="text-sm sm:text-base md:text-xl text-white/90 font-light tracking-wide max-w-2xl mx-auto px-4">
                 {{ $about->subtitle ?? 'Partner Terpercaya dalam Industri Garmen Indonesia Sejak 2015' }}
@@ -195,7 +195,7 @@
     <section class="py-16 md:py-24 px-4 md:px-20 bg-[#F8FAFC]">
         <div class="max-w-7xl mx-auto text-center mb-10 md:mb-16">
             <h2 class="text-3xl md:text-4xl font-black text-[#2D4373] mb-3 md:mb-4">Keunggulan Kami</h2>
-            <p class="text-slate-500 font-light text-sm md:text-base max-w-2xl mx-auto">Mengapa ribuan klien mempercayai Ainun Konveksi untuk kebutuhan produksi mereka</p>
+            <p class="text-slate-500 font-light text-sm md:text-base max-w-2xl mx-auto">Mengapa ribuan klien mempercayai Anjaya Konveksi untuk kebutuhan produksi mereka</p>
         </div>
 
         <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
@@ -210,23 +210,21 @@
                 </div>
             </div>
             @empty
-            <div class="col-span-full text-center text-slate-400 italic text-sm md:text-base">Data Keunggulan Belum Diisi di CMS (Menu Halaman Tentang Kami).</div>
+            <div class="col-span-full text-center text-slate-400 italic text-sm md:text-base">Data Keunggulan Belum Diisi di CMS.</div>
             @endforelse
         </div>
     </section>
 
     <footer class="bg-[#4A699C] py-16 md:py-20 px-6 md:px-20 border-t border-white/10 mt-10">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-16">
-            
+        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-16">
             <div>
                 <h4 class="text-white text-xl md:text-2xl font-bold mb-6 md:mb-8 tracking-wide">Links Utama</h4>
                 <ul class="space-y-4 md:space-y-5 text-white/80 font-medium text-base md:text-lg">
-                    <li><a href="/#about" class="hover:text-yellow-400 transition-colors">Tentang Kami</a></li>
+                    <li><a href="/lowongan" class="hover:text-yellow-400 transition-colors">Lowongan Kerja</a></li>
                     <li><a href="/project" class="hover:text-yellow-400 transition-colors">Portofolio</a></li>
                     <li><a href="/#services" class="hover:text-yellow-400 transition-colors">Layanan</a></li>
                 </ul>
             </div>
-
             <div>
                 <h4 class="text-white text-xl md:text-2xl font-bold mb-6 md:mb-8 tracking-wide">Akun</h4>
                 <ul class="space-y-4 md:space-y-5 text-white/80 font-medium text-base md:text-lg">
@@ -234,33 +232,24 @@
                     <li><a href="/register-custom" class="hover:text-yellow-400 transition-colors">Daftar Member</a></li>
                 </ul>
             </div>
-
-            <div>
-                <h4 class="text-white text-xl md:text-2xl font-bold mb-6 md:mb-8 tracking-wide">Informasi</h4>
-                <ul class="space-y-4 md:space-y-5 text-white/80 font-medium text-base md:text-lg">
-                    <li><a href="#" class="hover:text-yellow-400 transition-colors">Syarat & Ketentuan</a></li>
-                </ul>
-            </div>
-
             <div>
                 <h4 class="text-white text-xl md:text-2xl font-bold mb-6 md:mb-8 tracking-wide">Media Sosial</h4>
                 <div class="flex gap-4">
-                    <a href="#" class="w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center text-[#4A699C] hover:bg-yellow-400 hover:text-white transition-all shadow-lg transform hover:-translate-y-1">
-                        <i class="fab fa-facebook-f text-lg md:text-xl"></i>
+                    <a href="#" class="w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center text-[#4A699C] hover:bg-yellow-400 transition-all shadow-lg transform hover:-translate-y-1">
+                        <i class="fab fa-facebook-f text-lg"></i>
                     </a>
-                    <a href="#" class="w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center text-[#4A699C] hover:bg-yellow-400 hover:text-white transition-all shadow-lg transform hover:-translate-y-1">
-                        <i class="fab fa-instagram text-lg md:text-xl"></i>
+                    <a href="#" class="w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center text-[#4A699C] hover:bg-yellow-400 transition-all shadow-lg transform hover:-translate-y-1">
+                        <i class="fab fa-instagram text-lg"></i>
                     </a>
-                    <a href="#" class="w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center text-[#4A699C] hover:bg-yellow-400 hover:text-white transition-all shadow-lg transform hover:-translate-y-1">
-                        <i class="fab fa-twitter text-lg md:text-xl"></i>
+                    <a href="#" class="w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center text-[#4A699C] hover:bg-yellow-400 transition-all shadow-lg transform hover:-translate-y-1">
+                        <i class="fab fa-twitter text-lg"></i>
                     </a>
                 </div>
             </div>
-
         </div>
         
         <div class="max-w-7xl mx-auto border-t border-white/20 mt-12 md:mt-16 pt-8 text-center text-white/80 text-xs md:text-sm font-medium">
-            &copy; 2026 Ainun Konveksi. All rights reserved.
+            &copy; 2026 Anjaya Konveksi. All rights reserved.
         </div>
     </footer>
 

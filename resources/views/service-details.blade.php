@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Layanan Kami | Ainun Konveksi</title>
+    <title>Layanan Kami | Anjaya Konveksi</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -18,9 +18,9 @@
     <nav class="bg-white border-b border-slate-100 px-4 md:px-20 py-3 md:py-4 flex justify-between items-center transition-all sticky top-0 z-50 shadow-sm">
         <a href="/" class="flex items-center gap-2 md:gap-3 cursor-pointer">
             <div class="w-8 h-8 md:w-10 md:h-10 bg-[#3B5998] rounded-lg md:rounded-xl flex items-center justify-center shadow-lg">
-                <span class="text-white font-black text-sm md:text-base italic tracking-tighter">a</span>
+                <span class="text-white font-black text-sm md:text-base italic tracking-tighter">anjaya</span>
             </div>
-            <span class="font-extrabold text-base md:text-lg tracking-tight text-[#2D4373]">AINUN KONVEKSI</span>
+            <span class="font-extrabold text-base md:text-lg tracking-tight text-[#2D4373]">ANJAYA KONVEKSI</span>
         </a>
         <a href="/" class="text-[11px] md:text-[13px] font-semibold text-slate-500 hover:text-yellow-600 transition-colors flex items-center gap-1.5 md:gap-2 bg-slate-50 md:bg-transparent px-3 py-1.5 md:px-0 md:py-0 rounded-full md:rounded-none">
             <i class="fas fa-arrow-left"></i> <span class="hidden sm:inline">Kembali ke Beranda</span><span class="sm:hidden">Kembali</span>
@@ -39,7 +39,7 @@
 
         <div class="relative z-10 max-w-3xl mx-auto px-2">
             <h1 class="text-3xl sm:text-4xl md:text-6xl font-black text-white mb-4 md:mb-6 tracking-tight drop-shadow-lg">
-                {{ $service->hero_title ?? 'Layanan Konveksi Ainun' }}
+                {{ $service->hero_title ?? 'Layanan Konveksi Anjaya' }}
             </h1>
             <p class="text-sm md:text-lg text-white/90 font-light tracking-wide max-w-xl mx-auto">
                 {{ $service->hero_subtitle ?? 'Solusi Produksi Pakaian Berkualitas untuk Brand, Perusahaan, dan Komunitas' }}
@@ -49,7 +49,7 @@
 
     <section class="py-16 md:py-24 px-4 md:px-20 bg-slate-50">
         <div class="max-w-7xl mx-auto text-center mb-10 md:mb-16">
-            <h2 class="text-3xl md:text-4xl font-black text-[#4A699C] mb-3 md:mb-4">Layanan Konveksi Ainun</h2>
+            <h2 class="text-3xl md:text-4xl font-black text-[#4A699C] mb-3 md:mb-4">Layanan Konveksi Anjaya</h2>
             <p class="text-slate-600 font-medium text-sm md:text-base">Berikut adalah berbagai layanan produksi pakaian yang kami tawarkan</p>
         </div>
 
@@ -97,29 +97,21 @@
             <div class="hidden md:block absolute top-[2.5rem] left-[10%] right-[10%] h-[2px] bg-slate-200 z-0"></div>
 
             <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-10 md:gap-12 relative z-10">
-                
                 <div class="flex flex-col items-center text-center max-w-[250px] bg-white px-4">
                     <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#FCA311] text-white flex items-center justify-center text-2xl md:text-3xl font-black mb-4 md:mb-6 shadow-xl shadow-orange-500/20 border-4 border-white">1</div>
                     <h4 class="font-bold text-[#4A699C] text-base md:text-lg mb-2">Konsultasi</h4>
                     <p class="text-xs text-slate-500 leading-relaxed">Diskusi kebutuhan dan spesifikasi produk yang Anda inginkan</p>
                 </div>
-                
-                <div class="hidden md:hidden sm:flex items-center justify-center w-full h-8"><div class="h-full w-[2px] bg-slate-200"></div></div>
-
                 <div class="flex flex-col items-center text-center max-w-[250px] bg-white px-4">
                     <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#FCA311] text-white flex items-center justify-center text-2xl md:text-3xl font-black mb-4 md:mb-6 shadow-xl shadow-orange-500/20 border-4 border-white">2</div>
                     <h4 class="font-bold text-[#4A699C] text-base md:text-lg mb-2">Produksi</h4>
                     <p class="text-xs text-slate-500 leading-relaxed">Proses produksi dengan standar kualitas tinggi</p>
                 </div>
-                
-                <div class="hidden md:hidden sm:flex items-center justify-center w-full h-8"><div class="h-full w-[2px] bg-slate-200"></div></div>
-
                 <div class="flex flex-col items-center text-center max-w-[250px] bg-white px-4">
                     <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#FCA311] text-white flex items-center justify-center text-2xl md:text-3xl font-black mb-4 md:mb-6 shadow-xl shadow-orange-500/20 border-4 border-white">3</div>
                     <h4 class="font-bold text-[#4A699C] text-base md:text-lg mb-2">Pengiriman</h4>
                     <p class="text-xs text-slate-500 leading-relaxed">Pengiriman produk tepat waktu ke lokasi Anda</p>
                 </div>
-
             </div>
         </div>
     </section>
@@ -143,17 +135,15 @@
     </section>
 
     <footer class="bg-[#4A699C] py-16 md:py-20 px-6 md:px-20 border-t border-white/10 mt-10">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-16">
-            
+        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-16">
             <div>
                 <h4 class="text-white text-xl md:text-2xl font-bold mb-6 md:mb-8 tracking-wide">Links Utama</h4>
                 <ul class="space-y-4 md:space-y-5 text-white/80 font-medium text-base md:text-lg">
-                    <li><a href="/#about" class="hover:text-yellow-400 transition-colors">Tentang Kami</a></li>
+                    <li><a href="/lowongan" class="hover:text-yellow-400 transition-colors">Lowongan Kerja</a></li>
                     <li><a href="/project" class="hover:text-yellow-400 transition-colors">Portofolio</a></li>
                     <li><a href="/#services" class="hover:text-yellow-400 transition-colors">Layanan</a></li>
                 </ul>
             </div>
-
             <div>
                 <h4 class="text-white text-xl md:text-2xl font-bold mb-6 md:mb-8 tracking-wide">Akun</h4>
                 <ul class="space-y-4 md:space-y-5 text-white/80 font-medium text-base md:text-lg">
@@ -161,14 +151,6 @@
                     <li><a href="/register-custom" class="hover:text-yellow-400 transition-colors">Daftar Member</a></li>
                 </ul>
             </div>
-
-            <div>
-                <h4 class="text-white text-xl md:text-2xl font-bold mb-6 md:mb-8 tracking-wide">Informasi</h4>
-                <ul class="space-y-4 md:space-y-5 text-white/80 font-medium text-base md:text-lg">
-                    <li><a href="#" class="hover:text-yellow-400 transition-colors">Syarat & Ketentuan</a></li>
-                </ul>
-            </div>
-
             <div>
                 <h4 class="text-white text-xl md:text-2xl font-bold mb-6 md:mb-8 tracking-wide">Media Sosial</h4>
                 <div class="flex gap-4">
@@ -183,13 +165,10 @@
                     </a>
                 </div>
             </div>
-
         </div>
-        
         <div class="max-w-7xl mx-auto border-t border-white/20 mt-12 md:mt-16 pt-8 text-center text-white/80 text-xs md:text-sm font-medium">
-            &copy; 2026 Ainun Konveksi. All rights reserved.
+            &copy; 2026 Anjaya Konveksi. All rights reserved.
         </div>
     </footer>
-
 </body>
 </html>
