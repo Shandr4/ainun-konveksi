@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project & Portofolio | {{ $data->hero_title ?? 'Ainun Konveksi' }}</title>
+    <title>Project & Portofolio | {{ $data->hero_title ?? 'Anjaya Konveksi' }}</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
@@ -13,7 +13,6 @@
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; }
         .hero-gradient { background: linear-gradient(to bottom, rgba(45, 67, 115, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%); }
-        /* Animasi untuk filter project */
         .project-card { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
         .project-card.hide { opacity: 0; transform: scale(0.95); pointer-events: none; position: absolute; visibility: hidden; }
         .project-card.show { opacity: 1; transform: scale(1); visibility: visible; position: relative; }
@@ -25,22 +24,22 @@
         <div class="flex items-center gap-4 md:gap-8 mx-auto md:mx-0">
             <span class="flex items-center gap-1.5 hover:text-white transition">
                 <i class="far fa-clock text-yellow-400"></i>
-                {{ $data->opening_hours ?? 'Mon-Fri: 9AM - 5PM' }}
+                {{ $data->opening_hours ?? 'Senin - Jumat 09:00 - 17:00' }}
             </span>
             <span class="flex items-center gap-1.5 hover:text-white transition">
                 <i class="fas fa-phone-alt text-yellow-400"></i>
-                {{ $data->phone ?? '(205) 484-9624' }}
+                {{ $data->phone ?? '081226110438' }}
             </span>
         </div>
         <a href="/#contact-order" class="hidden md:block bg-yellow-500 hover:bg-yellow-400 text-[#2D4373] font-bold px-5 py-1.5 rounded-full text-[10px] uppercase transition-all shadow-lg">
-            Get appointment now
+            GET APPOINTMENT NOW
         </a>
     </div>
 
     <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 px-4 md:px-20 py-3 md:py-4 flex justify-between items-center transition-all shadow-sm">
         <a href="/" class="flex items-center gap-3 group cursor-pointer">
             <div class="w-10 h-10 md:w-12 md:h-12 bg-[#3B5998] rounded-xl md:rounded-2xl flex items-center justify-center shadow-xl shadow-blue-900/20 transform group-hover:rotate-6 transition-all">
-                <span class="text-white font-black text-base md:text-lg italic tracking-tighter">ainun</span>
+                <span class="text-white font-black text-base md:text-lg italic tracking-tighter">anjaya</span>
             </div>
             <span class="font-extrabold text-lg md:text-xl tracking-tight text-[#2D4373]">KONVEKSI</span>
         </a>
@@ -53,7 +52,7 @@
             <div id="nav-links" class="flex items-center gap-8">
                 <a href="/" class="nav-link text-slate-500 hover:text-yellow-600 transition-colors">Home</a>
                 <a href="/project" class="nav-link text-yellow-600 border-b-2 border-yellow-500 pb-1 transition-colors">Project</a>
-                <a href="/#about" class="nav-link text-slate-500 hover:text-yellow-600 transition-colors">About us</a>
+                <a href="/lowongan" class="nav-link text-slate-500 hover:text-yellow-600 transition-colors">Lowongan</a>
                 <a href="/#contact-order" class="nav-link text-slate-500 hover:text-yellow-600 transition-colors">Contact</a>
             </div>
 
@@ -71,7 +70,7 @@
         <button id="close-menu-btn" class="absolute top-6 right-6 text-3xl text-slate-400 hover:text-red-500"><i class="fas fa-times"></i></button>
         <a href="/" class="mobile-link border-b border-slate-100 pb-4">Home</a>
         <a href="/project" class="mobile-link border-b border-slate-100 pb-4 text-yellow-600">Project</a>
-        <a href="/#about" class="mobile-link border-b border-slate-100 pb-4">About us</a>
+        <a href="/lowongan" class="mobile-link border-b border-slate-100 pb-4">Lowongan</a>
         <a href="/#contact-order" class="mobile-link border-b border-slate-100 pb-4">Contact</a>
         
         <div class="mt-4 flex flex-col gap-4">
@@ -97,7 +96,6 @@
     </header>
 
     <section class="py-16 md:py-20 px-4 md:px-20 max-w-7xl mx-auto min-h-screen">
-        
         <div class="flex flex-wrap justify-center gap-2 md:gap-3 mb-10 md:mb-16" id="filter-container">
             <button class="filter-btn active bg-[#2D4373] text-white px-5 md:px-6 py-2 md:py-2.5 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest shadow-lg transition-all" data-filter="all">
                 Semua
@@ -114,7 +112,6 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10" id="project-grid">
-            
             @forelse($projects ?? [] as $item)
             <div class="project-card show group cursor-pointer" data-category="{{ $item->category }}">
                 <div class="bg-white rounded-[20px] md:rounded-[30px] p-3 md:p-4 shadow-xl shadow-slate-200/50 border border-slate-100 hover:-translate-y-2 transition-transform duration-500">
@@ -140,14 +137,12 @@
             @empty
             <div class="col-span-full text-center text-slate-400 italic py-10 text-sm md:text-base">Belum ada portofolio yang ditambahkan di Admin Panel.</div>
             @endforelse
-            
         </div>
     </section>
 
     <section class="py-16 md:py-20 bg-[#2D4373] relative overflow-hidden">
         <div class="absolute -top-24 -right-24 w-96 h-96 bg-[#3B5998] rounded-full mix-blend-multiply filter blur-3xl opacity-50"></div>
         <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-yellow-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
-
         <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
             <h2 class="text-3xl md:text-5xl font-black text-white mb-4 md:mb-6">Tertarik Membuat Project Serupa?</h2>
             <p class="text-white/80 text-sm md:text-lg mb-8 md:mb-10 max-w-2xl mx-auto font-light">
@@ -161,16 +156,14 @@
 
     <footer class="bg-[#4A699C] py-16 md:py-20 px-6 md:px-20 border-t border-white/10 mt-10">
         <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-16">
-            
             <div>
                 <h4 class="text-white text-xl md:text-2xl font-bold mb-6 md:mb-8 tracking-wide">Links Utama</h4>
                 <ul class="space-y-4 md:space-y-5 text-white/80 font-medium text-base md:text-lg">
-                    <li><a href="/#about" class="hover:text-yellow-400 transition-colors">Tentang Kami</a></li>
+                    <li><a href="/lowongan" class="hover:text-yellow-400 transition-colors">Lowongan Kerja</a></li>
                     <li><a href="/project" class="hover:text-yellow-400 transition-colors">Portofolio</a></li>
                     <li><a href="/#services" class="hover:text-yellow-400 transition-colors">Layanan</a></li>
                 </ul>
             </div>
-
             <div>
                 <h4 class="text-white text-xl md:text-2xl font-bold mb-6 md:mb-8 tracking-wide">Akun</h4>
                 <ul class="space-y-4 md:space-y-5 text-white/80 font-medium text-base md:text-lg">
@@ -178,14 +171,6 @@
                     <li><a href="/register-custom" class="hover:text-yellow-400 transition-colors">Daftar Member</a></li>
                 </ul>
             </div>
-
-            <div>
-                <h4 class="text-white text-xl md:text-2xl font-bold mb-6 md:mb-8 tracking-wide">Informasi</h4>
-                <ul class="space-y-4 md:space-y-5 text-white/80 font-medium text-base md:text-lg">
-                    <li><a href="#" class="hover:text-yellow-400 transition-colors">Syarat & Ketentuan</a></li>
-                </ul>
-            </div>
-
             <div>
                 <h4 class="text-white text-xl md:text-2xl font-bold mb-6 md:mb-8 tracking-wide">Media Sosial</h4>
                 <div class="flex gap-4">
@@ -200,18 +185,14 @@
                     </a>
                 </div>
             </div>
-
         </div>
-        
         <div class="max-w-7xl mx-auto border-t border-white/20 mt-12 md:mt-16 pt-8 text-center text-white/80 text-xs md:text-sm font-medium">
-            &copy; 2026 Ainun Konveksi. All rights reserved.
+            &copy; 2026 Anjaya Konveksi. All rights reserved.
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            
-            // 1. LOGIKA BUKA TUTUP MENU DI HP 📱
             const mobileBtn = document.getElementById('mobile-menu-btn');
             const closeBtn = document.getElementById('close-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
@@ -220,31 +201,24 @@
                 mobileBtn.addEventListener('click', () => {
                     mobileMenu.classList.remove('translate-x-full');
                 });
-
                 closeBtn.addEventListener('click', () => {
                     mobileMenu.classList.add('translate-x-full');
                 });
             }
 
-            // 2. LOGIKA FILTER GAMBAR PROJECT 🖼️ (TIDAK DIUBAH SAMA SEKALI)
             const filterBtns = document.querySelectorAll('.filter-btn');
             const projectCards = document.querySelectorAll('.project-card');
 
             filterBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
-                    // Remove active state
                     filterBtns.forEach(b => {
                         b.classList.remove('bg-[#2D4373]', 'text-white', 'shadow-lg');
                         b.classList.add('bg-white', 'text-slate-600');
                     });
-
-                    // Add active state
                     btn.classList.remove('bg-white', 'text-slate-600');
                     btn.classList.add('bg-[#2D4373]', 'text-white', 'shadow-lg');
 
-                    // Filter logic
                     const filterValue = btn.getAttribute('data-filter');
-
                     projectCards.forEach(card => {
                         if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
                             card.classList.remove('hide');
@@ -256,7 +230,6 @@
                     });
                 });
             });
-            
         });
     </script>
 </body>
