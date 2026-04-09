@@ -1,171 +1,84 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use App\Models\Appointment;
+use App\Models\JobVacancy;
+use App\Models\Project;
 use App\Models\LandingPage;
-use App\Models\AboutPage;
-use App\Models\ServicePage;
-use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes - AINUN KONVEKSI FINAL SYSTEM (VERIFIED EDITION)
+| 1. HALAMAN UTAMA (HOME)
 |--------------------------------------------------------------------------
 */
-
-// 1. HALAMAN UTAMA (WELCOME)
 Route::get('/', function () {
-    $data = LandingPage::first();
-    return view('welcome', compact('data'));
+    $data = LandingPage::first(); 
+    $vacancies = JobVacancy::where('is_active', true)->get(); 
+    return view('welcome', compact('data', 'vacancies'));
 })->name('home');
 
-// 2. HALAMAN DETAIL TENTANG KAMI
+/*
+|--------------------------------------------------------------------------
+| 2. HALAMAN FRONTEND (PUBLIK)
+|--------------------------------------------------------------------------
+*/
+
+// Pastikan file: resources/views/lowongan.blade.php ada
+Route::get('/lowongan', function () {
+    $vacancies = JobVacancy::all(); 
+    return view('lowongan', compact('vacancies'));
+})->name('lowongan');
+
+// Pastikan file: resources/views/project.blade.php ada
+Route::get('/project', function () {
+    $projects = Project::all();
+    return view('project', compact('projects'));
+})->name('project');
+
 Route::get('/about-details', function () {
-    $about = AboutPage::first();
-    $landing = LandingPage::first();
-    return view('about-details', compact('about', 'landing'));
+    // Kita harus ambil data LandingPage lagi di sini biar bisa tampil
+    $data = \App\Models\LandingPage::first(); 
+    
+    return view('about-details', [
+        'data' => $data
+    ]);
 })->name('about-details');
 
-// 3. HALAMAN DETAIL LAYANAN
-Route::get('/layanan-kami', function () {
-    $service = ServicePage::first();
-    $landing = LandingPage::first();
-    return view('service-details', compact('service', 'landing'));
+// Buka routes/web.php, cari route service dan ubah jadi gini aja:
+Route::get('/service-details', function () {
+    return view('service-details');
 })->name('service-details');
 
-// 4. HALAMAN SYARAT & KETENTUAN (TERMS)
-Route::get('/terms', function () {
-    return view('terms');
-})->name('terms');
-
 /*
 |--------------------------------------------------------------------------
-| EMAIL VERIFICATION SYSTEM
+| 3. AUTH & DASHBOARD (BREEZE)
 |--------------------------------------------------------------------------
 */
 
-Route::get('/email/verify', function () {
-    return view('auth.verify-email'); 
-})->middleware('auth')->name('verification.notice');
+// Dashboard Customer (Bukan Admin)
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
-    return redirect('/')->with('success_login', 'Email berhasil diverifikasi! Selamat bergabung.');
-})->middleware(['auth', 'signed'])->name('verification.verify');
-
-Route::post('/email/verification-notification', function (Request $request) {
-    $request->user()->sendEmailVerificationNotification();
-    return back()->with('message', 'Link verifikasi baru telah dikirim!');
-})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+// Profile Management
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 /*
 |--------------------------------------------------------------------------
-| AUTHENTICATION SYSTEM
+| 4. ACTION ROUTES (POST)
 |--------------------------------------------------------------------------
 */
+Route::post('/appointment', function () {
+    return back()->with('success', 'Pesan terkirim ke Anjaya Konveksi!');
+})->name('appointment.store');
 
-Route::get('/login-custom', function () {
-    return view('auth.login');
-})->name('login');
+// Jembatan buat link lama kamu di welcome.blade.php biar gak 404
+Route::get('/login-custom', fn() => redirect()->route('login'));
+Route::get('/register-custom', fn() => redirect()->route('register'));
+Route::get('/karir', fn() => redirect()->route('lowongan'));
 
-Route::get('/register-custom', function () {
-    return view('auth.register');
-})->name('register');
-
-// REGISTER
-Route::post('/register-custom', function (Request $request) {
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|string|email|max:255|unique:users',
-        'password' => 'required|string|min:8|confirmed',
-    ]);
-
-    $user = User::create([
-        'name' => $request->name,
-        'email' => $request->email,
-        'password' => Hash::make($request->password),
-    ]);
-
-    // Pemicu Kirim Email Verifikasi Otomatis
-    event(new Registered($user));
-
-    Auth::login($user);
-
-    return redirect()->route('verification.notice');
-});
-
-// LOGIN (VIP Admin Jalur)
-Route::post('/login-custom', function (Request $request) {
-    $credentials = $request->validate([
-        'email' => 'required|email',
-        'password' => 'required',
-    ]);
-
-    $remember = $request->has('remember');
-
-    if (Auth::attempt($credentials, $remember)) {
-        $request->session()->regenerate();
-        $user = Auth::user();
-        
-        $daftarAdmin = ['adminganteng@ainun.com', 'admin@ainun.com'];
-
-        if (in_array($user->email, $daftarAdmin)) {
-            return redirect('/admin'); 
-        }
-
-        return redirect('/')->with('success_login', 'Login berhasil!');
-    }
-
-    return back()->withErrors(['email' => 'Email atau password salah bosku.'])->onlyInput('email');
-});
-
-Route::post('/logout', function (Request $request) {
-    Auth::logout();
-    $request->session()->invalidate();
-    $request->session()->regenerateToken();
-    return redirect('/');
-})->name('logout');
-
-/*
-|--------------------------------------------------------------------------
-| FORM SUBMISSION (LAPIS BELAKANG SECURED) 🛡️
-|--------------------------------------------------------------------------
-*/
-
-Route::post('/appointment', function (Request $request) {
-    $request->validate([
-        'first_name' => 'required',
-        'last_name' => 'required',
-        'email' => 'required|email',
-        'phone' => 'required',
-        'message' => 'required',
-    ]);
-
-    Appointment::create($request->all());
-    return back()->with('success', 'Pesan berhasil dikirim!');
-})->name('appointment.store')->middleware('auth');
-
-// HALAMAN PORTOFOLIO / PROJECT
-Route::get('/project', function () {
-    // Kita panggil LandingPage biar nomor WA & Jam Buka di header tetap muncul
-    $data = App\Models\LandingPage::first(); 
-    
-    // Ambil data dari tabel projects
-    $projects = App\Models\Project::latest()->get(); 
-    
-    return view('project', compact('data', 'projects'));
-});
-
-// Jalur Khusus Halaman Karir (Anjaya Konveksi)
-Route::get('/lowongan', function () {
-    // Ambil semua data loker yang statusnya AKTIF dari database
-    $vacancies = \App\Models\JobVacancy::where('is_active', true)->latest()->get();
-    
-    // Kirim datanya ke file tampilan 'lowongan.blade.php'
-    return view('lowongan', compact('vacancies'));
-});
+require __DIR__.'/auth.php';

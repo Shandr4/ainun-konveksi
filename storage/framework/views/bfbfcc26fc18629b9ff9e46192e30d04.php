@@ -29,20 +29,22 @@
 
     <header class="relative py-24 md:py-32 px-4 md:px-6 flex flex-col items-center justify-center text-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            @if(isset($cms_service) && $cms_service->hero_image)
-                <img src="{{ asset('storage/' . $cms_service->hero_image) }}" class="w-full h-full object-cover" alt="Layanan Kami">
-            @else
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(isset($cms_service) && $cms_service->hero_image): ?>
+                <img src="<?php echo e(asset('storage/' . $cms_service->hero_image)); ?>" class="w-full h-full object-cover" alt="Layanan Kami">
+            <?php else: ?>
                 <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover" alt="Default Hero">
-            @endif
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
             <div class="absolute inset-0 hero-overlay"></div>
         </div>
 
         <div class="relative z-10 max-w-3xl mx-auto px-2">
             <h1 class="text-3xl sm:text-4xl md:text-6xl font-black text-white mb-4 md:mb-6 tracking-tight drop-shadow-lg">
-                {{ $cms_service->hero_title ?? 'Layanan Konveksi Anjaya' }}
+                <?php echo e($cms_service->hero_title ?? 'Layanan Konveksi Anjaya'); ?>
+
             </h1>
             <p class="text-sm md:text-lg text-white/90 font-light tracking-wide max-w-xl mx-auto italic">
-                {{ $cms_service->hero_subtitle ?? 'Solusi Produksi Pakaian Berkualitas untuk Brand, Perusahaan, dan Komunitas' }}
+                <?php echo e($cms_service->hero_subtitle ?? 'Solusi Produksi Pakaian Berkualitas untuk Brand, Perusahaan, dan Komunitas'); ?>
+
             </p>
         </div>
     </header>
@@ -54,46 +56,47 @@
         </div>
 
         <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            @php
+            <?php
                 // REVISI: Ambil dari 'detailed_services' sesuai hasil Tinker
                 $raw_list = $cms_service->detailed_services ?? [];
                 $layanan_items = is_string($raw_list) ? json_decode($raw_list, true) : $raw_list;
                 $layanan_items = $layanan_items ?? [];
-            @endphp
+            ?>
 
-            @forelse($layanan_items as $index => $item)
-                @php
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__empty_1 = true; $__currentLoopData = $layanan_items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                <?php
                     $bgColor = ($index % 2 == 0) ? 'bg-[#4A699C]' : 'bg-[#FCA311]';
                     // REVISI: Nama key adalah 'title', 'description', dan 'image'
                     $title = $item['title'] ?? 'Produksi Seragam';
                     $desc = $item['description'] ?? 'Produksi seragam berkualitas dengan berbagai pilihan bahan.';
                     $image = isset($item['image']) ? asset('storage/' . $item['image']) : null;
-                @endphp
+                ?>
 
                 <div class="bg-white rounded-[20px] md:rounded-[24px] shadow-lg border border-slate-100 overflow-hidden hover:-translate-y-2 transition-transform duration-300 flex flex-col">
-                    <div class="h-32 md:h-40 w-full {{ $bgColor }} flex items-center justify-center relative overflow-hidden">
-                        @if($image)
-                            <img src="{{ $image }}" class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60">
-                        @else
+                    <div class="h-32 md:h-40 w-full <?php echo e($bgColor); ?> flex items-center justify-center relative overflow-hidden">
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($image): ?>
+                            <img src="<?php echo e($image); ?>" class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60">
+                        <?php else: ?>
                             <span class="text-white/60 font-medium text-xs md:text-sm">Gambar Layanan</span>
-                        @endif
+                        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                     </div>
                     
                     <div class="p-6 md:p-8 text-center flex flex-col flex-1">
-                        <h3 class="text-[#4A699C] font-bold text-base md:text-lg mb-2 md:mb-3 uppercase tracking-tight">{{ $title }}</h3>
+                        <h3 class="text-[#4A699C] font-bold text-base md:text-lg mb-2 md:mb-3 uppercase tracking-tight"><?php echo e($title); ?></h3>
                         <p class="text-xs text-slate-500 leading-relaxed mb-5 md:mb-6 flex-1 font-light italic">
-                            {{ $desc }}
+                            <?php echo e($desc); ?>
+
                         </p>
-                        <a href="https://wa.me/{{ $cms_landing->phone ?? '' }}" target="_blank" class="inline-block w-full border border-[#FCA311] text-[#FCA311] hover:bg-[#FCA311] hover:text-white rounded-full py-2 md:py-2.5 text-[10px] md:text-[11px] font-bold uppercase tracking-widest transition-colors">
+                        <a href="https://wa.me/<?php echo e($cms_landing->phone ?? ''); ?>" target="_blank" class="inline-block w-full border border-[#FCA311] text-[#FCA311] hover:bg-[#FCA311] hover:text-white rounded-full py-2 md:py-2.5 text-[10px] md:text-[11px] font-bold uppercase tracking-widest transition-colors">
                             Pesan Sekarang
                         </a>
                     </div>
                 </div>
-            @empty
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                 <div class="col-span-full text-center py-10 text-slate-400 text-sm md:text-base italic">
                     Belum ada data layanan yang ditambahkan di CMS.
                 </div>
-            @endforelse
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
         </div>
     </section>
 
@@ -135,7 +138,7 @@
                 <p class="font-light mb-8 md:mb-10 max-w-2xl mx-auto text-xs sm:text-sm md:text-base leading-relaxed px-4 opacity-80">
                     Hubungi kami sekarang untuk konsultasi gratis dan dapatkan penawaran terbaik.
                 </p>
-                <a href="https://wa.me/{{ $cms_landing->phone ?? '' }}" class="inline-flex items-center justify-center gap-2 md:gap-3 bg-[#FCA311] hover:bg-yellow-400 text-white font-bold px-6 md:px-10 py-3 md:py-4 rounded-xl shadow-xl transition-transform hover:-translate-y-1 w-[80%] sm:w-auto text-sm md:text-base">
+                <a href="https://wa.me/<?php echo e($cms_landing->phone ?? ''); ?>" class="inline-flex items-center justify-center gap-2 md:gap-3 bg-[#FCA311] hover:bg-yellow-400 text-white font-bold px-6 md:px-10 py-3 md:py-4 rounded-xl shadow-xl transition-transform hover:-translate-y-1 w-[80%] sm:w-auto text-sm md:text-base">
                     <i class="far fa-comments text-base md:text-lg"></i>
                     <span class="tracking-wide">Konsultasi Sekarang</span>
                 </a>
@@ -180,4 +183,4 @@
         </div>
     </footer>
 </body>
-</html>
+</html><?php /**PATH C:\xampp\htdocs\ainun-konveksiV3\resources\views/service-details.blade.php ENDPATH**/ ?>

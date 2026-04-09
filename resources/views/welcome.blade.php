@@ -72,7 +72,7 @@
 
         <div class="hidden md:flex items-center gap-8 text-[13px] font-semibold tracking-wide">
             <div id="nav-links" class="flex items-center gap-8">
-                <a href="#home" class="nav-link text-slate-500 hover:text-yellow-600 transition-colors" data-section="home">Home</a>
+                <a href="#home" class="nav-link text-slate-500 hover:text-yellow-600 transition-colors" data-section="home">Dashboard</a>
                 <a href="/project" class="nav-link text-slate-500 hover:text-yellow-600 transition-colors">Project</a>
                 <a href="/lowongan" class="nav-link text-slate-500 hover:text-yellow-600 transition-colors">Lowongan</a>
                 <a href="#contact-order" class="nav-link text-slate-500 hover:text-yellow-600 transition-colors" data-section="contact-order">Contact</a>
@@ -99,7 +99,7 @@
 
     <div id="mobile-menu" class="fixed inset-0 z-[60] bg-white pt-24 px-8 flex flex-col gap-6 text-lg font-bold text-[#2D4373] transition-transform duration-300 transform translate-x-full shadow-2xl">
         <button id="close-menu-btn" class="absolute top-6 right-6 text-3xl text-slate-400 hover:text-red-500"><i class="fas fa-times"></i></button>
-        <a href="#home" class="mobile-link border-b border-slate-100 pb-4">Home</a>
+        <a href="#home" class="mobile-link border-b border-slate-100 pb-4">Dashboard</a>
         <a href="/project" class="mobile-link border-b border-slate-100 pb-4">Project</a>
         <a href="/karir" class="mobile-link border-b border-slate-100 pb-4">Karir</a>
         <a href="#contact-order" class="mobile-link border-b border-slate-100 pb-4">Contact</a>
